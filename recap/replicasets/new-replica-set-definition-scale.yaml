@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"ReplicaSet","metadata":{"annotations":{},"creationTimestamp":"2025-03-26T15:31:35Z","generation":1,"name":"new-replica-set","namespace":"default","resourceVersion":"787","uid":"0fb66651-da40-4d00-a925-dc91703e7a16"},"spec":{"replicas":4,"selector":{"matchLabels":{"name":"busybox-pod"}},"template":{"metadata":{"creationTimestamp":null,"labels":{"name":"busybox-pod"}},"spec":{"containers":[{"command":["sh","-c","echo Hello Kubernetes! \u0026\u0026 sleep 3600"],"image":"busybox","imagePullPolicy":"Always","name":"busybox-container","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30}}},"status":{"fullyLabeledReplicas":4,"observedGeneration":1,"replicas":4}}
+  creationTimestamp: "2025-03-26T15:56:06Z"
+  generation: 2
+  name: new-replica-set
+  namespace: default
+  resourceVersion: "2043"
+  uid: 5fe61c02-4461-431d-8f23-d6b03e1e6081
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: busybox-pod
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: busybox-pod
+    spec:
+      containers:
+      - command:
+        - sh
+        - -c
+        - echo Hello Kubernetes! && sleep 3600
+        image: busybox
+        imagePullPolicy: Always
+        name: busybox-container
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 5
+  fullyLabeledReplicas: 5
+  observedGeneration: 2
+  readyReplicas: 5
+  replicas: 5
