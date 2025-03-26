@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2025-03-26T16:57:24Z"
+  labels:
+    kubernetes.io/metadata.name: marketing
+  name: marketing
+  resourceVersion: "745"
+  uid: a25abfad-1829-4bb1-8acd-5c62d1c6a7f8
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

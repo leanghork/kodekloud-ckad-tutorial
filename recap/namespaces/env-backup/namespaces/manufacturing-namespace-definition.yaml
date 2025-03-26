@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2025-03-26T16:57:25Z"
+  labels:
+    kubernetes.io/metadata.name: manufacturing
+  name: manufacturing
+  resourceVersion: "755"
+  uid: 4c7ad2a1-ae19-4e69-9929-f40c09b23041
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

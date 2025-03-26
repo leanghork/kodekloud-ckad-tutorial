@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2025-03-26T16:57:25Z"
+  name: payroll-service
+  namespace: finance
+  resourceVersion: "810"
+  uid: 9a7d6e8b-d3da-4c55-831a-d8adbbdefeb7
+spec:
+  clusterIP: 10.43.241.176
+  clusterIPs:
+  - 10.43.241.176
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30083
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: payroll
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2025-03-26T16:57:25Z"
+  name: blue-service
+  namespace: marketing
+  resourceVersion: "796"
+  uid: 1c2b6d1a-dabe-4425-bb36-44de1f22de07
+spec:
+  clusterIP: 10.43.58.212
+  clusterIPs:
+  - 10.43.58.212
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30082
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: blue
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

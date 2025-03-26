@@ -1,0 +1,117 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2025-03-26T16:57:25Z"
+  labels:
+    name: payroll
+  name: payroll
+  namespace: finance
+  resourceVersion: "874"
+  uid: 9afe7a15-ba10-4948-84d4-d3b2a8266718
+spec:
+  containers:
+  - env:
+    - name: APP_NAME
+      value: Payroll Application
+    - name: BG_COLOR
+      value: blue
+    image: kodekloud/webapp-conntest
+    imagePullPolicy: Always
+    name: payroll
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-zfgnw
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: controlplane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-zfgnw
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-03-26T16:57:32Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-03-26T16:57:25Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-03-26T16:57:32Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-03-26T16:57:32Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-03-26T16:57:25Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://0edc071c0ad41b0f9127bb7be3f7d4e7b6c520b2657bf0f01b9273684512c32f
+    image: docker.io/kodekloud/webapp-conntest:latest
+    imageID: docker.io/kodekloud/webapp-conntest@sha256:b87d6b99f127ef10274e4447b3a151127688369b82eab09eba6ab6a84e6c5689
+    lastState: {}
+    name: payroll
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2025-03-26T16:57:31Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-zfgnw
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 192.168.183.200
+  hostIPs:
+  - ip: 192.168.183.200
+  phase: Running
+  podIP: 10.22.0.15
+  podIPs:
+  - ip: 10.22.0.15
+  qosClass: BestEffort
+  startTime: "2025-03-26T16:57:25Z"

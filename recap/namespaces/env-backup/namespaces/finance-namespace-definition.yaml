@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2025-03-26T16:57:24Z"
+  labels:
+    kubernetes.io/metadata.name: finance
+  name: finance
+  resourceVersion: "742"
+  uid: d74de96d-5a44-4eb0-9db3-f990fd39473b
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active
