@@ -1,0 +1,70 @@
+Name:             webapp
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             controlplane/192.168.251.217
+Start Time:       Wed, 26 Mar 2025 15:12:31 +0000
+Labels:           <none>
+Annotations:      <none>
+Status:           Pending
+IP:               10.22.0.13
+IPs:
+  IP:  10.22.0.13
+Containers:
+  nginx:
+    Container ID:   containerd://58295435235f4573ee20f359ae40d282b005a8e7b705a033f03fed6f5f867a68
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:124b44bfc9ccd1f3cedf4b592d4d1e8bddb78b51ec2ed5056c52d3692baebc19
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Wed, 26 Mar 2025 15:12:32 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-6xjxc (ro)
+  agentx:
+    Container ID:   
+    Image:          agentx
+    Image ID:       
+    Port:           <none>
+    Host Port:      <none>
+    State:          Waiting
+      Reason:       ImagePullBackOff
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-6xjxc (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-6xjxc:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                   From               Message
+  ----     ------     ----                  ----               -------
+  Normal   Scheduled  4m35s                 default-scheduler  Successfully assigned default/webapp to controlplane
+  Normal   Pulling    4m34s                 kubelet            Pulling image "nginx"
+  Normal   Pulled     4m34s                 kubelet            Successfully pulled image "nginx" in 165ms (165ms including waiting). Image size: 72180980 bytes.
+  Normal   Created    4m34s                 kubelet            Created container: nginx
+  Normal   Started    4m34s                 kubelet            Started container nginx
+  Normal   Pulling    94s (x5 over 4m34s)   kubelet            Pulling image "agentx"
+  Warning  Failed     94s (x5 over 4m34s)   kubelet            Failed to pull image "agentx": failed to pull and unpack image "docker.io/library/agentx:latest": failed to resolve reference "docker.io/library/agentx:latest": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+  Warning  Failed     94s (x5 over 4m34s)   kubelet            Error: ErrImagePull
+  Warning  Failed     42s (x15 over 4m33s)  kubelet            Error: ImagePullBackOff
+  Normal   BackOff    30s (x16 over 4m33s)  kubelet            Back-off pulling image "agentx"

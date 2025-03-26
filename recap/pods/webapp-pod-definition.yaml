@@ -1,0 +1,142 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2025-03-26T15:12:31Z"
+  name: webapp
+  namespace: default
+  resourceVersion: "970"
+  uid: 47a99fdb-bcda-4c93-80ab-dd9af0c3725d
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: nginx
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-6xjxc
+      readOnly: true
+  - image: agentx
+    imagePullPolicy: Always
+    name: agentx
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-6xjxc
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: controlplane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-6xjxc
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-03-26T15:12:33Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-03-26T15:12:31Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-03-26T15:12:31Z"
+    message: 'containers with unready status: [agentx]'
+    reason: ContainersNotReady
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-03-26T15:12:31Z"
+    message: 'containers with unready status: [agentx]'
+    reason: ContainersNotReady
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-03-26T15:12:31Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - image: agentx
+    imageID: ""
+    lastState: {}
+    name: agentx
+    ready: false
+    restartCount: 0
+    started: false
+    state:
+      waiting:
+        message: 'Back-off pulling image "agentx": ErrImagePull: failed to pull and
+          unpack image "docker.io/library/agentx:latest": failed to resolve reference
+          "docker.io/library/agentx:latest": pull access denied, repository does not
+          exist or may require authorization: server message: insufficient_scope:
+          authorization failed'
+        reason: ImagePullBackOff
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-6xjxc
+      readOnly: true
+      recursiveReadOnly: Disabled
+  - containerID: containerd://58295435235f4573ee20f359ae40d282b005a8e7b705a033f03fed6f5f867a68
+    image: docker.io/library/nginx:latest
+    imageID: docker.io/library/nginx@sha256:124b44bfc9ccd1f3cedf4b592d4d1e8bddb78b51ec2ed5056c52d3692baebc19
+    lastState: {}
+    name: nginx
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2025-03-26T15:12:32Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-6xjxc
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 192.168.251.217
+  hostIPs:
+  - ip: 192.168.251.217
+  phase: Pending
+  podIP: 10.22.0.13
+  podIPs:
+  - ip: 10.22.0.13
+  qosClass: BestEffort
+  startTime: "2025-03-26T15:12:31Z"
+  
